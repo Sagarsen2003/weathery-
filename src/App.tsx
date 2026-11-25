@@ -210,6 +210,8 @@ export const App: React.FC = () => {
       <WeatherBackground
         condition={conditionInfo}
         isDay={weatherData ? weatherData.current.isDay : true}
+        weatherCode={weatherData ? weatherData.current.weatherCode : 0}
+        temperatureC={weatherData ? weatherData.current.temperature : 20}
       />
 
       {/* Main Container */}
@@ -236,7 +238,7 @@ export const App: React.FC = () => {
 
         {/* Error notification if any */}
         {errorMessage && (
-          <div className="mb-6 p-4 rounded-2xl bg-rose-950/80 border border-rose-500/40 text-rose-100 backdrop-blur-xl flex items-center justify-between gap-3 shadow-lg animate-fadeIn">
+          <div className="mb-6 p-4 rounded-2xl liquid-glass !bg-rose-950/75 !border-rose-400/45 text-rose-100 flex items-center justify-between gap-3 animate-fadeIn">
             <div className="flex items-center gap-3">
               <AlertCircle size={20} className="text-rose-400 shrink-0" />
               <span className="text-sm font-medium">{errorMessage}</span>
@@ -303,9 +305,9 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="w-full max-w-5xl mx-auto px-4 py-8 text-center text-xs text-white/50 border-t border-white/10 mt-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center flex-wrap justify-center sm:justify-start gap-1 text-white/90 text-xs sm:text-sm">
+      <footer className="w-full max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-xs">
+        <div className="liquid-glass-subtle rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center flex-wrap justify-center sm:justify-start gap-1 text-white/95 text-xs sm:text-sm">
             <span>© 2026 Weathery. All rights reserved. | Developed by</span>
             <a
               href="https://github.com/Sagarsen2003"
@@ -324,7 +326,7 @@ export const App: React.FC = () => {
               <span>Sagar Sengupta</span>
             </a>
           </div>
-          <div className="flex items-center gap-4 text-white/60">
+          <div className="flex items-center gap-4 text-white/75">
             <span>Data powered by Open-Meteo & BigDataCloud</span>
             <span>•</span>
             <button

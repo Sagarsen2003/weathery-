@@ -4,7 +4,7 @@ export const WeatherSkeleton: React.FC = () => {
   return (
     <div className="space-y-6 animate-pulse">
       {/* Current Weather Card Skeleton */}
-      <div className="rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/15 p-6 md:p-8">
+      <div className="rounded-[2rem] liquid-glass p-6 md:p-8">
         <div className="flex justify-between items-center mb-6">
           <div className="space-y-2">
             <div className="h-8 bg-white/20 rounded-xl w-48" />
@@ -33,7 +33,7 @@ export const WeatherSkeleton: React.FC = () => {
       </div>
 
       {/* Hourly Timeline Skeleton */}
-      <div className="rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/15 p-6">
+      <div className="rounded-[2rem] liquid-glass p-6">
         <div className="h-6 bg-white/20 rounded-lg w-36 mb-4" />
         <div className="flex gap-2.5 overflow-hidden">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -44,7 +44,7 @@ export const WeatherSkeleton: React.FC = () => {
       </div>
 
       {/* Weekly Outlook Skeleton */}
-      <div className="rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/15 p-6 space-y-2.5">
+      <div className="rounded-[2rem] liquid-glass p-6 space-y-2.5">
         <div className="h-6 bg-white/20 rounded-lg w-36 mb-4" />
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="h-14 bg-white/10 rounded-2xl" />

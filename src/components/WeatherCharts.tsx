@@ -32,7 +32,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label, m
   if (active && payload && payload.length) {
     const p = payload[0].payload;
     return (
-      <div className="bg-slate-900/90 backdrop-blur-xl border border-white/20 p-3 rounded-2xl shadow-xl text-white text-xs min-w-[130px]">
+      <div className="liquid-glass-panel p-3 rounded-2xl text-white text-xs min-w-[140px]">
         <span className="font-semibold text-white/80 block pb-1 border-b border-white/10">
           {label}
         </span>
@@ -101,14 +101,14 @@ export const WeatherCharts: React.FC<WeatherChartsProps> = ({ hourly, unit }) =>
           24-Hour Trend Visualizer
         </span>
 
-        <div className="bg-black/25 backdrop-blur-md p-1 rounded-xl border border-white/15 flex items-center gap-1 text-xs font-medium">
+        <div className="liquid-glass-pill p-1 rounded-full flex items-center gap-1 text-xs font-medium">
           <button
             type="button"
             onClick={() => setMetric('temperature')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
               metric === 'temperature'
                 ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
-                : 'text-white/70 hover:text-white'
+                : 'text-white/75 hover:text-white'
             }`}
           >
             <Thermometer size={13} />
@@ -118,10 +118,10 @@ export const WeatherCharts: React.FC<WeatherChartsProps> = ({ hourly, unit }) =>
           <button
             type="button"
             onClick={() => setMetric('precipitation')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
               metric === 'precipitation'
                 ? 'bg-sky-400 text-slate-950 font-bold shadow-md'
-                : 'text-white/70 hover:text-white'
+                : 'text-white/75 hover:text-white'
             }`}
           >
             <Droplets size={13} />
@@ -131,10 +131,10 @@ export const WeatherCharts: React.FC<WeatherChartsProps> = ({ hourly, unit }) =>
           <button
             type="button"
             onClick={() => setMetric('wind')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
               metric === 'wind'
-                ? 'bg-indigo-400 text-slate-950 font-bold shadow-md'
-                : 'text-white/70 hover:text-white'
+                ? 'bg-indigo-300 text-slate-950 font-bold shadow-md'
+                : 'text-white/75 hover:text-white'
             }`}
           >
             <Wind size={13} />

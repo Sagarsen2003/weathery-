@@ -58,10 +58,10 @@ export const SevereAlertBanner: React.FC<SevereAlertBannerProps> = ({
         return (
           <div
             key={alert.id}
-            className={`rounded-3xl border backdrop-blur-xl transition-all duration-300 overflow-hidden shadow-2xl ${
+            className={`rounded-[2rem] liquid-glass transition-all duration-300 overflow-hidden ${
               isExtreme
-                ? 'bg-rose-950/85 border-rose-500/50 text-rose-100 shadow-rose-950/50 ring-1 ring-rose-500/40'
-                : 'bg-amber-950/85 border-amber-500/50 text-amber-100 shadow-amber-950/50 ring-1 ring-amber-500/40'
+                ? '!bg-rose-950/75 !border-rose-400/50 text-rose-100 ring-1 ring-rose-500/40'
+                : '!bg-amber-950/75 !border-amber-400/50 text-amber-100 ring-1 ring-amber-500/40'
             }`}
           >
             {/* Main Header row */}

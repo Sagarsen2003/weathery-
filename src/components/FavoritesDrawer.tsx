@@ -55,7 +55,7 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
 
       {/* Drawer Panel */}
       <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-slate-900/90 text-white backdrop-blur-2xl border-l border-white/20 shadow-2xl flex flex-col animate-slideLeft">
+        <div className="w-screen max-w-md liquid-glass-panel border-l border-white/25 text-white flex flex-col animate-slideLeft">
           {/* Drawer Header */}
           <div className="p-5 border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -140,10 +140,10 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
                       onSelectCity(city);
                       onClose();
                     }}
-                    className={`p-3.5 rounded-2xl flex items-center justify-between transition-all cursor-pointer border ${
+                    className={`p-3.5 rounded-2xl flex items-center justify-between transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-white/20 border-amber-400/50 shadow-md ring-1 ring-amber-400/40'
-                        : 'bg-white/10 hover:bg-white/15 border-white/10'
+                        ? 'liquid-glass-active ring-1 ring-amber-400/50'
+                        : 'liquid-glass-subtle'
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -205,7 +205,7 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
                       onSelectCity(c);
                       onClose();
                     }}
-                    className="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-left transition-all cursor-pointer text-xs"
+                    className="p-2.5 rounded-xl liquid-glass-subtle text-left transition-all cursor-pointer text-xs"
                   >
                     <span className="font-medium text-white block truncate">{c.name}</span>
                     <span className="text-[11px] text-white/50 block truncate">{c.country}</span>

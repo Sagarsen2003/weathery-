@@ -54,7 +54,7 @@ export const EmergencyActionModal: React.FC<EmergencyActionModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 animate-fadeIn">
       <div
-        className="relative w-full max-w-3xl bg-slate-900 border border-white/20 rounded-3xl shadow-2xl overflow-hidden text-white my-auto"
+        className="relative w-full max-w-3xl liquid-glass-panel rounded-[2rem] overflow-hidden text-white my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Header with Emergency Beacon */}

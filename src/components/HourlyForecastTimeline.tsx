@@ -24,20 +24,21 @@ export const HourlyForecastTimeline: React.FC<HourlyForecastTimelineProps> = ({
   };
 
   return (
-    <div className="rounded-3xl bg-white/15 dark:bg-black/25 backdrop-blur-2xl border border-white/20 p-6 shadow-2xl text-white">
+    <div className="rounded-[2rem] liquid-glass p-6 text-white">
       {/* Header with Title and Scroll Controls */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Clock size={18} className="text-amber-300" />
+          <Clock size={18} className="text-amber-300 drop-shadow" />
           <h2 className="text-lg md:text-xl font-bold tracking-tight">Hourly Forecast</h2>
-          <span className="text-xs text-white/50 ml-1">Next 48 Hours</span>
+          <span className="text-xs text-white/60 ml-1">Next 48 Hours</span>
         </div>
 
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             onClick={() => scroll('left')}
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/25 active:bg-white/35 text-white/80 hover:text-white transition-all cursor-pointer border border-white/10"
+            aria-label="Scroll hourly forecast left"
+            className="p-2 rounded-full liquid-glass-pill text-white/85 hover:text-white transition-all cursor-pointer"
             title="Scroll left"
           >
             <ChevronLeft size={16} />
@@ -45,7 +46,8 @@ export const HourlyForecastTimeline: React.FC<HourlyForecastTimelineProps> = ({
           <button
             type="button"
             onClick={() => scroll('right')}
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/25 active:bg-white/35 text-white/80 hover:text-white transition-all cursor-pointer border border-white/10"
+            aria-label="Scroll hourly forecast right"
+            className="p-2 rounded-full liquid-glass-pill text-white/85 hover:text-white transition-all cursor-pointer"
             title="Scroll right"
           >
             <ChevronRight size={16} />
@@ -56,7 +58,7 @@ export const HourlyForecastTimeline: React.FC<HourlyForecastTimelineProps> = ({
       {/* Horizontal Scrollable Timeline Strip */}
       <div
         ref={scrollRef}
-        className="flex gap-2.5 overflow-x-auto pb-3 pt-1 scroll-smooth no-scrollbar select-none"
+        className="flex gap-3 overflow-x-auto pb-3 pt-1 scroll-smooth no-scrollbar select-none"
       >
         {hourly.map((item, index) => {
           const isNow = index === 0;
@@ -64,10 +66,10 @@ export const HourlyForecastTimeline: React.FC<HourlyForecastTimelineProps> = ({
           return (
             <div
               key={`${item.time}-${index}`}
-              className={`shrink-0 flex flex-col items-center justify-between p-3.5 rounded-2xl w-24 text-center transition-all duration-200 border ${
+              className={`shrink-0 flex flex-col items-center justify-between p-3.5 rounded-2xl w-24 text-center transition-all duration-200 ${
                 isNow
-                  ? 'bg-white/25 border-amber-400/50 shadow-md ring-1 ring-amber-300/40'
-                  : 'bg-white/10 hover:bg-white/15 border-white/10 hover:border-white/20'
+                  ? 'liquid-glass-active ring-1 ring-amber-300/60'
+                  : 'liquid-glass-subtle'
               }`}
             >
               {/* Time */}
