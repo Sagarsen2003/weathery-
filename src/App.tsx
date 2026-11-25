@@ -306,8 +306,8 @@ export const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-5 lg:px-6 pb-6 sm:pb-8 pt-2 text-center text-xs">
-        <div className="liquid-glass-subtle rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center flex-wrap justify-center sm:justify-start gap-1 text-white/95 text-xs sm:text-sm">
+        <div className="liquid-glass-subtle rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-center">
+          <div className="flex items-center flex-wrap justify-center gap-1 text-white/95 text-xs sm:text-sm">
             <span>© 2026 Weathery. All rights reserved. | Developed by</span>
             <a
               href="https://github.com/Sagarsen2003"
@@ -325,17 +325,6 @@ export const App: React.FC = () => {
               </svg>
               <span>Sagar Sengupta</span>
             </a>
-          </div>
-          <div className="flex items-center gap-4 text-white/75">
-            <span>Data powered by Open-Meteo & BigDataCloud</span>
-            <span>•</span>
-            <button
-              onClick={() => currentLocation && loadWeather(currentLocation)}
-              className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              <RefreshCw size={12} />
-              Refresh
-            </button>
           </div>
         </div>
       </footer>
