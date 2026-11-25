@@ -52,77 +52,80 @@ export const EmergencyActionModal: React.FC<EmergencyActionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-5 animate-fadeIn">
       <div
-        className="relative w-full max-w-3xl liquid-glass-panel rounded-[2rem] overflow-hidden text-white my-auto"
+        className="relative w-full max-w-3xl max-h-[90vh] flex flex-col liquid-glass-panel rounded-3xl sm:rounded-[2rem] overflow-hidden text-white my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Header with Emergency Beacon */}
         <div
-          className={`p-5 sm:p-6 border-b transition-colors ${
+          className={`p-4 sm:p-6 border-b shrink-0 transition-colors ${
             isExtreme
               ? 'bg-gradient-to-r from-rose-950/90 via-red-900/80 to-rose-950/90 border-rose-500/30'
               : 'bg-gradient-to-r from-amber-950/90 via-orange-900/80 to-amber-950/90 border-amber-500/30'
           }`}
         >
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3">
+          <div className="flex items-start justify-between gap-2.5 sm:gap-4">
+            <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
               <div
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center shrink-0 border ${
                   isExtreme
                     ? 'bg-rose-500/30 text-rose-300 border-rose-400/50 animate-pulse'
                     : 'bg-amber-500/30 text-amber-300 border-amber-400/50'
                 }`}
               >
-                <AlertTriangle size={26} />
+                <AlertTriangle size={22} className="sm:w-[26px] sm:h-[26px]" />
               </div>
 
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span
-                    className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
+                    className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
                       isExtreme ? 'bg-rose-600 text-white' : 'bg-amber-600 text-white'
                     }`}
                   >
                     {alert.severity} • {alert.urgency} Action Required
                   </span>
-                  <span className="text-xs text-white/70">
+                  <span className="text-[11px] sm:text-xs text-white/75">
                     Active until {alert.expiresTime}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white mt-1">
+                <h3 className="text-base sm:text-xl md:text-2xl font-extrabold tracking-tight text-white mt-1 leading-snug">
                   {alert.event}
                 </h3>
-                <p className="text-xs sm:text-sm text-white/80 line-clamp-1 mt-0.5">
+                <p className="text-xs sm:text-sm text-white/80 line-clamp-2 sm:line-clamp-1 mt-0.5">
                   {alert.headline}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 shrink-0">
+            <div className="flex items-center gap-1 shrink-0">
               <button
                 type="button"
                 onClick={() => playSevereAlertChime(0.2)}
-                className="p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 title="Play emergency alert siren"
+                aria-label="Play emergency alert siren"
               >
-                <Volume2 size={18} />
+                <Volume2 size={17} />
               </button>
               <button
                 type="button"
                 onClick={handlePrint}
-                className="p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="hidden sm:inline-flex p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 title="Print action plan"
+                aria-label="Print action plan"
               >
                 <Printer size={18} />
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 title="Close"
+                aria-label="Close modal"
               >
-                <X size={20} />
+                <X size={19} />
               </button>
             </div>
           </div>
@@ -180,7 +183,7 @@ export const EmergencyActionModal: React.FC<EmergencyActionModalProps> = ({
         </div>
 
         {/* Modal Tab Content */}
-        <div className="p-5 sm:p-6 max-h-[60vh] overflow-y-auto custom-scrollbar space-y-6">
+        <div className="p-4 sm:p-6 flex-1 overflow-y-auto custom-scrollbar space-y-5 sm:space-y-6">
           {/* TAB 1: IMMEDIATE STEPS */}
           {activeTab === 'immediate' && (
             <div className="space-y-4 animate-fadeIn">
@@ -374,12 +377,12 @@ export const EmergencyActionModal: React.FC<EmergencyActionModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-black/40 border-t border-white/10 flex items-center justify-between text-xs text-white/60">
-          <span>Authority: {alert.senderName || 'Meteorological Authority'}</span>
+        <div className="p-3.5 sm:p-4 bg-black/40 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-white/65 shrink-0">
+          <span className="text-center sm:text-left">Authority: {alert.senderName || 'Meteorological Authority'}</span>
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-semibold transition-all cursor-pointer"
+            className="w-full sm:w-auto px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-semibold transition-all cursor-pointer"
           >
             I Understand & Stay Safe
           </button>

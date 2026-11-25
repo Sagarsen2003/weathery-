@@ -54,7 +54,7 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
       />
 
       {/* Drawer Panel */}
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div className="w-screen max-w-md liquid-glass-panel border-l border-white/25 text-white flex flex-col animate-slideLeft">
           {/* Drawer Header */}
           <div className="p-5 border-b border-white/10 flex items-center justify-between">

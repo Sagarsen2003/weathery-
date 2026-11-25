@@ -35,14 +35,14 @@ export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ daily, unit }) =
   };
 
   return (
-    <div className="rounded-[2rem] liquid-glass p-6 text-white">
+    <div className="rounded-3xl sm:rounded-[2rem] liquid-glass p-4 sm:p-6 text-white">
       {/* Title */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
         <div className="flex items-center gap-2">
-          <CalendarDays size={18} className="text-amber-300 drop-shadow" />
-          <h2 className="text-lg md:text-xl font-bold tracking-tight">10-Day Outlook</h2>
+          <CalendarDays size={18} className="text-amber-300 drop-shadow shrink-0" />
+          <h2 className="text-base sm:text-lg md:text-xl font-bold tracking-tight">10-Day Outlook</h2>
         </div>
-        <span className="text-xs text-white/60">Click day for hourly details</span>
+        <span className="text-[11px] sm:text-xs text-white/60">Tap day for hourly details</span>
       </div>
 
       {/* Daily List */}
@@ -70,35 +70,35 @@ export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ daily, unit }) =
               {/* Main Daily Row */}
               <div
                 onClick={() => toggleExpand(day.date)}
-                className="p-3.5 md:p-4 flex items-center justify-between gap-3 cursor-pointer select-none"
+                className="p-3 sm:p-4 flex items-center justify-between gap-2 sm:gap-3 cursor-pointer select-none"
               >
                 {/* Left: Day & Date */}
-                <div className="w-28 shrink-0">
-                  <span className="font-semibold text-sm md:text-base text-white block">
+                <div className="w-14 sm:w-24 md:w-28 shrink-0">
+                  <span className="font-semibold text-xs sm:text-sm md:text-base text-white block truncate">
                     {day.dayName}
                   </span>
-                  <span className="text-[11px] text-white/60 block">{day.fullDate}</span>
+                  <span className="text-[10px] sm:text-[11px] text-white/65 block">{day.fullDate}</span>
                 </div>
 
                 {/* Condition & Rain Chance */}
-                <div className="flex items-center gap-3 w-36 shrink-0">
-                  <WeatherIcon code={day.weatherCode} size={28} />
+                <div className="flex-1 min-w-0 sm:flex-none sm:w-36 md:w-40 flex items-center gap-2 sm:gap-3">
+                  <WeatherIcon code={day.weatherCode} size={24} className="shrink-0 sm:w-[28px] sm:h-[28px]" />
                   <div className="min-w-0">
                     <span className="text-xs md:text-sm font-medium text-white/90 truncate block">
                       {day.conditionText}
                     </span>
                     {day.precipitationProbability > 0 && (
-                      <span className="text-[11px] text-sky-300 font-semibold flex items-center gap-1">
-                        <Droplets size={10} />
+                      <span className="text-[10px] sm:text-[11px] text-sky-300 font-semibold flex items-center gap-1">
+                        <Droplets size={10} className="shrink-0" />
                         {day.precipitationProbability}%
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* Middle: Google Weather style Min/Max range bar */}
-                <div className="flex-1 hidden sm:flex items-center gap-3 px-2">
-                  <span className="text-xs font-medium text-white/70 w-8 text-right">
+                {/* Middle: Min/Max range bar (sm+) */}
+                <div className="flex-1 hidden sm:flex items-center gap-2.5 md:gap-3 px-1 md:px-2">
+                  <span className="text-xs font-medium text-white/75 w-8 text-right shrink-0">
                     {formatTemp(day.minTempC, unit)}
                   </span>
 
@@ -113,27 +113,27 @@ export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ daily, unit }) =
                     />
                   </div>
 
-                  <span className="text-xs font-bold text-white w-8">
+                  <span className="text-xs font-bold text-white w-8 shrink-0">
                     {formatTemp(day.maxTempC, unit)}
                   </span>
                 </div>
 
                 {/* Mobile temp display when range bar is hidden */}
-                <div className="flex sm:hidden items-center gap-1.5 text-xs">
-                  <span className="text-white/60">{formatTemp(day.minTempC, unit)}</span>
-                  <span>/</span>
+                <div className="flex sm:hidden items-center gap-1 text-xs whitespace-nowrap shrink-0">
+                  <span className="text-white/65">{formatTemp(day.minTempC, unit)}</span>
+                  <span className="text-white/40">/</span>
                   <span className="font-bold text-white">{formatTemp(day.maxTempC, unit)}</span>
                 </div>
 
                 {/* Expand Chevron */}
-                <div className="shrink-0 text-white/60">
-                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                <div className="shrink-0 text-white/65">
+                  {isExpanded ? <ChevronUp size={17} /> : <ChevronDown size={17} />}
                 </div>
               </div>
 
               {/* Expanded Detailed Hourly Info for this specific Day */}
               {isExpanded && (
-                <div className="p-4 bg-black/20 border-t border-white/10 space-y-4 animate-fadeIn">
+                <div className="p-3 sm:p-4 bg-black/20 border-t border-white/10 space-y-3 sm:space-y-4 animate-fadeIn">
                   {/* Secondary stats for this day */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                     <div className="liquid-glass-subtle p-2.5 rounded-xl flex items-center gap-2">

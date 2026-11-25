@@ -96,48 +96,50 @@ export const WeatherCharts: React.FC<WeatherChartsProps> = ({ hourly, unit }) =>
   return (
     <div className="mt-5 pt-4 border-t border-white/10">
       {/* Metric selection tabs */}
-      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <span className="text-xs font-semibold uppercase tracking-wider text-white/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2.5">
+        <span className="text-xs font-semibold uppercase tracking-wider text-white/65">
           24-Hour Trend Visualizer
         </span>
 
-        <div className="liquid-glass-pill p-1 rounded-full flex items-center gap-1 text-xs font-medium">
+        <div className="liquid-glass-pill p-1 rounded-full grid grid-cols-3 sm:flex items-center gap-1 text-[11px] sm:text-xs font-medium w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setMetric('temperature')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full transition-all cursor-pointer whitespace-nowrap ${
               metric === 'temperature'
                 ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
                 : 'text-white/75 hover:text-white'
             }`}
           >
-            <Thermometer size={13} />
-            <span>Temperature</span>
+            <Thermometer size={13} className="shrink-0" />
+            <span className="sm:hidden">Temp</span>
+            <span className="hidden sm:inline">Temperature</span>
           </button>
 
           <button
             type="button"
             onClick={() => setMetric('precipitation')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full transition-all cursor-pointer whitespace-nowrap ${
               metric === 'precipitation'
                 ? 'bg-sky-400 text-slate-950 font-bold shadow-md'
                 : 'text-white/75 hover:text-white'
             }`}
           >
-            <Droplets size={13} />
-            <span>Precipitation</span>
+            <Droplets size={13} className="shrink-0" />
+            <span className="sm:hidden">Rain %</span>
+            <span className="hidden sm:inline">Precipitation</span>
           </button>
 
           <button
             type="button"
             onClick={() => setMetric('wind')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full transition-all cursor-pointer whitespace-nowrap ${
               metric === 'wind'
                 ? 'bg-indigo-300 text-slate-950 font-bold shadow-md'
                 : 'text-white/75 hover:text-white'
             }`}
           >
-            <Wind size={13} />
+            <Wind size={13} className="shrink-0" />
             <span>Wind</span>
           </button>
         </div>

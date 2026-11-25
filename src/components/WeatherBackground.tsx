@@ -85,7 +85,7 @@ export const WeatherBackground: React.FC<WeatherBackgroundProps> = ({
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none"
+      className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none"
     >
       {/* 1. Base Sky Gradient */}
       <div

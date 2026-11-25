@@ -89,70 +89,97 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="w-full relative z-30 mb-6">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <header className="w-full relative z-30 mb-4 sm:mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 lg:flex-nowrap lg:gap-4">
         {/* Logo / App Name */}
-        <div className="flex items-center justify-between w-full md:w-auto">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl liquid-glass-pill p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
-              <img src="./logo.png" alt="Weathery Logo" className="w-full h-full object-contain drop-shadow" />
-            </div>
-            <div>
-              <span className="text-xl font-bold tracking-tight text-white flex items-center gap-1 drop-shadow-sm">
-                Weathery
-              </span>
-            </div>
+        <div className="order-1 flex items-center gap-2.5 shrink-0">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl liquid-glass-pill p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
+            <img src="./logo.png" alt="Weathery Logo" className="w-full h-full object-contain drop-shadow" />
           </div>
-
-          {/* Mobile buttons: Unit toggle & Favorites */}
-          <div className="flex items-center gap-2 md:hidden">
-            {/* Unit toggle */}
-            <div className="liquid-glass-pill p-1 rounded-full flex items-center text-xs font-semibold text-white">
-              <button
-                type="button"
-                onClick={() => onToggleUnit('C')}
-                className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
-                  unit === 'C'
-                    ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.4)] font-bold'
-                    : 'text-white/75 hover:text-white'
-                }`}
-              >
-                °C
-              </button>
-              <button
-                type="button"
-                onClick={() => onToggleUnit('F')}
-                className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
-                  unit === 'F'
-                    ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.4)] font-bold'
-                    : 'text-white/75 hover:text-white'
-                }`}
-              >
-                °F
-              </button>
-            </div>
-
-            {/* Favorites drawer button */}
-            <button
-              onClick={onOpenFavorites}
-              aria-label="Open saved cities"
-              className="relative p-2.5 rounded-full liquid-glass-pill text-white transition-all cursor-pointer"
-              title="Saved Cities"
-            >
-              <Bookmark size={18} className={favoritesCount > 0 ? 'text-amber-300 fill-amber-300' : ''} />
-              {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-amber-400 text-slate-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">
-                  {favoritesCount}
-                </span>
-              )}
-            </button>
+          <div>
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-1 drop-shadow-sm">
+              Weathery
+            </span>
           </div>
         </div>
 
-        {/* Center: Search input with Autocomplete & Recent History */}
-        <div ref={searchContainerRef} className="relative w-full md:max-w-md lg:max-w-lg">
+        {/* Controls: compact on mobile (<640px), full pills on sm+ */}
+        <div className="order-2 lg:order-3 flex items-center gap-2 sm:gap-2.5 shrink-0">
+          {/* Quick Geolocation button with label (tablet & desktop) */}
+          <button
+            onClick={onUseCurrentLocation}
+            disabled={isLocating}
+            className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full liquid-glass-pill text-white text-xs font-medium whitespace-nowrap shrink-0 transition-all cursor-pointer disabled:opacity-50"
+            title="Locate my position"
+          >
+            {isLocating ? (
+              <Loader2 size={15} className="animate-spin text-amber-300" />
+            ) : (
+              <LocateFixed size={15} className="text-amber-300" />
+            )}
+            <span>Current Location</span>
+          </button>
+
+          {/* Unit Toggle (all screens) */}
+          <div className="liquid-glass-pill p-1 rounded-full flex items-center text-xs font-semibold text-white shrink-0">
+            <button
+              type="button"
+              onClick={() => onToggleUnit('C')}
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all cursor-pointer ${
+                unit === 'C'
+                  ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.45)] font-bold'
+                  : 'text-white/75 hover:text-white'
+              }`}
+            >
+              °C
+            </button>
+            <button
+              type="button"
+              onClick={() => onToggleUnit('F')}
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all cursor-pointer ${
+                unit === 'F'
+                  ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.45)] font-bold'
+                  : 'text-white/75 hover:text-white'
+              }`}
+            >
+              °F
+            </button>
+          </div>
+
+          {/* Mobile compact Favorites button (<640px) */}
+          <button
+            onClick={onOpenFavorites}
+            aria-label="Open saved cities"
+            className="sm:hidden relative p-2.5 rounded-full liquid-glass-pill text-white transition-all cursor-pointer shrink-0"
+            title="Saved Cities"
+          >
+            <Bookmark size={17} className={favoritesCount > 0 ? 'text-amber-300 fill-amber-300' : ''} />
+            {favoritesCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-amber-400 text-slate-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">
+                {favoritesCount}
+              </span>
+            )}
+          </button>
+
+          {/* Tablet/Desktop Favorites pill button (sm+) */}
+          <button
+            onClick={onOpenFavorites}
+            className="hidden sm:flex relative items-center gap-2 px-3.5 py-2 rounded-full liquid-glass-pill text-white text-xs font-medium whitespace-nowrap shrink-0 transition-all cursor-pointer"
+          >
+            <Bookmark size={15} className={favoritesCount > 0 ? 'text-amber-300 fill-amber-300' : ''} />
+            <span>Saved Cities</span>
+            {favoritesCount > 0 && (
+              <span className="bg-amber-400 text-slate-950 text-[11px] font-bold px-1.5 py-0.2 rounded-full ml-0.5 shadow-sm">
+                {favoritesCount}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Search input with Autocomplete & Recent History (Row 2 on <1024px, Center on lg+) */}
+        <div ref={searchContainerRef} className="order-3 lg:order-2 relative w-full lg:flex-1 lg:max-w-md xl:max-w-lg">
           <div className="relative flex items-center">
-            <Search size={18} className="absolute left-4 text-white/75 pointer-events-none z-10" />
+            <Search size={18} className="absolute left-3.5 sm:left-4 text-white/75 pointer-events-none z-10" />
             <input
               type="text"
               value={query}
@@ -166,7 +193,7 @@ export const Header: React.FC<HeaderProps> = ({
                   ? `Search city (current: ${currentLocation.name})...`
                   : 'Search city, state, or country...'
               }
-              className="w-full pl-11 pr-24 py-2.5 rounded-full liquid-glass-input text-white placeholder-white/65 text-sm focus:outline-none transition-all"
+              className="w-full pl-10 sm:pl-11 pr-20 sm:pr-24 py-2.5 rounded-full liquid-glass-input text-white placeholder-white/65 text-sm focus:outline-none transition-all"
             />
 
             {/* Clear input or Loader */}
@@ -284,64 +311,6 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
           )}
-        </div>
-
-        {/* Desktop Controls: Unit toggle & Saved Cities Drawer Button */}
-        <div className="hidden md:flex items-center gap-2.5 shrink-0">
-          {/* Quick Geolocation button with label */}
-          <button
-            onClick={onUseCurrentLocation}
-            disabled={isLocating}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-full liquid-glass-pill text-white text-xs font-medium whitespace-nowrap shrink-0 transition-all cursor-pointer disabled:opacity-50"
-            title="Locate my position"
-          >
-            {isLocating ? (
-              <Loader2 size={15} className="animate-spin text-amber-300" />
-            ) : (
-              <LocateFixed size={15} className="text-amber-300" />
-            )}
-            <span>Current Location</span>
-          </button>
-
-          {/* Unit Toggle */}
-          <div className="liquid-glass-pill p-1 rounded-full flex items-center text-xs font-semibold text-white shrink-0">
-            <button
-              type="button"
-              onClick={() => onToggleUnit('C')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                unit === 'C'
-                  ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.45)] font-bold'
-                  : 'text-white/75 hover:text-white'
-              }`}
-            >
-              °C
-            </button>
-            <button
-              type="button"
-              onClick={() => onToggleUnit('F')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                unit === 'F'
-                  ? 'bg-white text-slate-950 shadow-[0_2px_10px_rgba(255,255,255,0.45)] font-bold'
-                  : 'text-white/75 hover:text-white'
-              }`}
-            >
-              °F
-            </button>
-          </div>
-
-          {/* Favorites Button */}
-          <button
-            onClick={onOpenFavorites}
-            className="relative flex items-center gap-2 px-3.5 py-2 rounded-full liquid-glass-pill text-white text-xs font-medium whitespace-nowrap shrink-0 transition-all cursor-pointer"
-          >
-            <Bookmark size={15} className={favoritesCount > 0 ? 'text-amber-300 fill-amber-300' : ''} />
-            <span>Saved Cities</span>
-            {favoritesCount > 0 && (
-              <span className="bg-amber-400 text-slate-950 text-[11px] font-bold px-1.5 py-0.2 rounded-full ml-0.5 shadow-sm">
-                {favoritesCount}
-              </span>
-            )}
-          </button>
         </div>
       </div>
     </header>

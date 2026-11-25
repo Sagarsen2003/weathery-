@@ -205,7 +205,7 @@ export const App: React.FC = () => {
   const isCurrentSaved = isCitySaved(currentLocation, savedCities);
 
   return (
-    <div className="relative min-h-screen text-white font-sans antialiased selection:bg-amber-400 selection:text-slate-950 flex flex-col justify-between">
+    <div className="relative min-h-screen w-full overflow-x-hidden text-white font-sans antialiased selection:bg-amber-400 selection:text-slate-950 flex flex-col justify-between">
       {/* Dynamic Background with Weather Gradients & Atmospheric Effects */}
       <WeatherBackground
         condition={conditionInfo}
@@ -215,7 +215,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Container */}
-      <div className="w-full max-w-5xl mx-auto px-4 py-6 md:py-10 flex-1">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-5 lg:px-6 py-4 sm:py-6 md:py-10 flex-1">
         {/* Navigation & Header */}
         <Header
           currentLocation={currentLocation}
@@ -259,7 +259,7 @@ export const App: React.FC = () => {
         {isLoading && !weatherData ? (
           <WeatherSkeleton />
         ) : weatherData ? (
-          <main className="space-y-6">
+          <main className="space-y-4 sm:space-y-6">
             {/* Current Weather Showcase Card */}
             <CurrentWeatherCard
               weather={weatherData}
@@ -305,8 +305,8 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="w-full max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-xs">
-        <div className="liquid-glass-subtle rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-5 lg:px-6 pb-6 sm:pb-8 pt-2 text-center text-xs">
+        <div className="liquid-glass-subtle rounded-2xl px-4 sm:px-5 py-3.5 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center flex-wrap justify-center sm:justify-start gap-1 text-white/95 text-xs sm:text-sm">
             <span>© 2026 Weathery. All rights reserved. | Developed by</span>
             <a
