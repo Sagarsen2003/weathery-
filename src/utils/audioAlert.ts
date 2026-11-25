@@ -79,7 +79,7 @@ export function playCheckmarkBeep(): void {
 
     osc.start(now);
     osc.stop(now + 0.15);
-  } catch (e) {
+  } catch {
     // Ignore audio errors
   }
 }

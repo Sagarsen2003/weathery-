@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   X,
   MapPin,
@@ -32,6 +32,17 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
   onToggleSaveCurrent,
   isCurrentSaved,
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -61,7 +72,8 @@ export const FavoritesDrawer: React.FC<FavoritesDrawerProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Close favorites drawer"
+              className="p-2 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             >
               <X size={20} />
             </button>

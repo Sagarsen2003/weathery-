@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   MapPin,
   Bookmark,
@@ -47,7 +47,7 @@ export const CurrentWeatherCard: React.FC<CurrentWeatherCardProps> = ({
   const aqiInfo = getAQIDescription(current.aqi);
 
   // Calculate daylight progress percentage
-  const getDaylightProgress = () => {
+  const daylightPct = useMemo(() => {
     if (!current.sunrise || !current.sunset) return 50;
     try {
       const sunrise = new Date(current.sunrise).getTime();
@@ -59,9 +59,7 @@ export const CurrentWeatherCard: React.FC<CurrentWeatherCardProps> = ({
     } catch {
       return 50;
     }
-  };
-
-  const daylightPct = getDaylightProgress();
+  }, [current.sunrise, current.sunset]);
 
   return (
     <div className="rounded-3xl bg-white/15 dark:bg-black/25 backdrop-blur-2xl border border-white/20 p-6 md:p-8 shadow-2xl text-white transition-all duration-300">

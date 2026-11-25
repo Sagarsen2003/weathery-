@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import type {
   GeoLocation,
   WeatherData,
@@ -37,9 +37,9 @@ import { AlertCircle, RefreshCw } from 'lucide-react';
 export const App: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [currentLocation, setCurrentLocation] = useState<GeoLocation | null>(null);
-  const [unit, setUnit] = useState<TemperatureUnit>(getStoredUnit());
-  const [savedCities, setSavedCities] = useState<SavedCity[]>([]);
-  const [recentSearches, setRecentSearches] = useState<GeoLocation[]>([]);
+  const [unit, setUnit] = useState<TemperatureUnit>(getStoredUnit);
+  const [savedCities, setSavedCities] = useState<SavedCity[]>(getSavedCities);
+  const [recentSearches, setRecentSearches] = useState<GeoLocation[]>(getRecentSearches);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLocating, setIsLocating] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -48,12 +48,6 @@ export const App: React.FC = () => {
   // Severe Alert System: Action plan modal & audio chime tracker
   const [selectedActionAlert, setSelectedActionAlert] = useState<WeatherAlert | null>(null);
   const prevAlertsCountRef = useRef<number>(0);
-
-  // Initialize saved cities & recent searches from storage
-  useEffect(() => {
-    setSavedCities(getSavedCities());
-    setRecentSearches(getRecentSearches());
-  }, []);
 
   // Fetch weather data for a given location
   const loadWeather = useCallback(async (location: GeoLocation, showSkeleton: boolean = true) => {
@@ -95,7 +89,7 @@ export const App: React.FC = () => {
           const { latitude, longitude } = pos.coords;
           const loc = await reverseGeocode(latitude, longitude);
           await loadWeather(loc);
-        } catch (e: any) {
+        } catch {
           setErrorMessage('Could not determine city name from your coordinates.');
         } finally {
           setIsLocating(false);
@@ -178,7 +172,7 @@ export const App: React.FC = () => {
     setRecentSearches([]);
   };
 
-  const activeAlerts = weatherData?.alerts || [];
+  const activeAlerts = useMemo(() => weatherData?.alerts || [], [weatherData?.alerts]);
 
   // When location changes to severe, play chime and dispatch browser notification
   useEffect(() => {
@@ -192,7 +186,7 @@ export const App: React.FC = () => {
               body: `${activeAlerts[0].headline}\nTap to view recommended safety actions.`,
               icon: './logo.png',
             });
-          } catch (e) {
+          } catch {
             // Notification dispatch may be blocked by permissions
           }
         } else if (Notification.permission === 'default') {
@@ -317,7 +311,7 @@ export const App: React.FC = () => {
               href="https://github.com/Sagarsen2003"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sky-400 hover:text-sky-300 transition-colors font-medium ml-1 cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-sky-300 hover:text-white transition-colors font-semibold drop-shadow-sm ml-1 cursor-pointer underline underline-offset-2"
               title="Sagar Sengupta's GitHub Profile"
             >
               <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
