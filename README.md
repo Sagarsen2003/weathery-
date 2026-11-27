@@ -6,6 +6,24 @@ A responsive, modern **Liquid Glass** weather web application built with **React
 
 ---
 
+## 📸 Screenshots
+
+### Liquid Glass Hero & Current Weather (Desktop)
+![Weathery Desktop Hero](./docs/screenshots/desktop-hero.png)
+
+### Hourly Forecast & Interactive 24-Hour Trend Visualizer
+![Weathery Hourly Forecast & Charts](./docs/screenshots/hourly-and-charts.png)
+
+### 10-Day Extended Outlook & Range Bars
+![Weathery 10-Day Outlook & Footer](./docs/screenshots/weekly-outlook-footer.png)
+
+### Real-Time Severe Weather Alert & Mobile Responsive View
+| Real-Time Severe Alert (Desktop) | Responsive Mobile View (`375px`) |
+| :---: | :---: |
+| ![Weathery Severe Alert Desktop](./docs/screenshots/severe-alert-desktop.png) | <img src="./docs/screenshots/mobile-responsive.png" alt="Weathery Mobile Responsive View" width="280" /> |
+
+---
+
 ## ✨ Features
 
 1. **Header & Navigation:**
@@ -106,6 +124,7 @@ VITE_OPENWEATHER_API_KEY=your_openweather_key_here
 ```text
 weather-app/
 ├── .github/workflows/deploy.yml   # GitHub Pages automated deployment workflow
+├── docs/screenshots/              # Live demo screenshots used in README
 ├── index.html                     # HTML entry point with metadata & fonts
 ├── vite.config.ts                 # Vite + Tailwind v4 configuration
 ├── package.json                   # Dependencies & scripts
