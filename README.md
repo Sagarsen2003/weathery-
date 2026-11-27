@@ -22,10 +22,10 @@ A responsive, modern **Liquid Glass** weather web application built with **React
 | :---: | :---: |
 | ![Weathery Severe Alert Desktop](./docs/screenshots/severe-alert-desktop.png) | <img src="./docs/screenshots/mobile-responsive.png" alt="Weathery Mobile Responsive View" width="280" /> |
 
-### Global Locations & Dynamic Night Themes
-| San Francisco (Overcast Night) | Moscow (Sub-Zero Partly Cloudy Night) |
+### Global Locations & Dynamic Themes
+| San Francisco (Overcast Night) | Singapore (Thunderstorm & Live Alert) |
 | :---: | :---: |
-| ![Weathery San Francisco](./docs/screenshots/san-francisco.png) | ![Weathery Moscow](./docs/screenshots/moscow.png) |
+| ![Weathery San Francisco](./docs/screenshots/san-francisco.png) | ![Weathery Singapore](./docs/screenshots/singapore.png) |
 
 ---
 
